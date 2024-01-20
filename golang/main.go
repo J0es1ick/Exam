@@ -18,7 +18,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	person2, err := bilet1.NewPerson("John",64)
+	person2, err := bilet1.NewPerson("John",52)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -28,4 +28,13 @@ func main() {
 	fmt.Println(bilet1.TryAdd(&collection, person2))
 
 	fmt.Println(bilet1.CalculateAvgAge(collection))
+
+	person3, err := bilet1.NewPerson("asd", 25)
+	fmt.Println(person3)
+
+	person3.SetAge(61)
+
+	fmt.Println(person3)
+
+	fmt.Println(bilet1.CalculateSum(collection))
 }

@@ -23,8 +23,16 @@ func (p Person) GetStatus() string {
 }
 
 func (p* Person) SetAge(age int) error {
-	if age > 0 && age < 150 {
+	if age >= 0 && age <= 150 {
 		p.age = age
+		switch {
+		case p.age < 18:
+			p.status = "child"
+	 	case p.age >= 18 && p.age < 60: 
+			p.status = "adult"
+		case p.age > 60:
+			p.status = "elderly"
+		}
 		return nil
 	}
 	var ErrWrongAge = errors.New("age is higher or lower than bound")
@@ -36,19 +44,8 @@ func NewPerson(name string, age int) (Person, error) {
 		age: age,
 		name: name,
 	}
-	switch {
-		case p.age < 18:
-			p.status = "child"
-	 	case p.age >= 18 && p.age < 60: 
-			p.status = "adult"
-	 	case p.age > 60:
-			p.status = "elderly"
-	}
 	var err = p.SetAge(age)
-	if err != nil {
-	    return p, err
-	}
-	return p, err
+	return p, err 
 }
 
 func CalculateSum(collection []Person) int {
