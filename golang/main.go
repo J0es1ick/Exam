@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"isuct.ru/informatics2022/bilet1"
+	"isuct.ru/informatics2022/bilet1/bilet1.go"
 )
 
 func main() {
@@ -18,12 +18,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	person2, err := bilet1.NewPerson("John",64)
+	person2, err := bilet1.NewPerson("John", 64)
 	if err != nil {
 		log.Fatal(err)
 	}
-	
-	collection := make([]bilet1.Person,0)
+
+	collection := make([]bilet1.Person, 0)
 	fmt.Println(bilet1.TryAdd(&collection, person1))
 	fmt.Println(bilet1.TryAdd(&collection, person2))
 

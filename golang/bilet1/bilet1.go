@@ -5,8 +5,8 @@ import (
 )
 
 type Person struct {
-	age int
-	name string
+	age    int
+	name   string
 	status string
 }
 
@@ -22,7 +22,7 @@ func (p Person) GetStatus() string {
 	return p.status
 }
 
-func (p* Person) SetAge(age int) error {
+func (p *Person) SetAge(age int) error {
 	if age > 0 && age < 150 {
 		p.age = age
 		return nil
@@ -32,21 +32,21 @@ func (p* Person) SetAge(age int) error {
 }
 
 func NewPerson(name string, age int) (Person, error) {
-	var p Person = Person {
-		age: age,
+	var p Person = Person{
+		age:  age,
 		name: name,
 	}
 	switch {
-		case p.age < 18:
-			p.status = "child"
-	 	case p.age >= 18 && p.age < 60: 
-			p.status = "adult"
-	 	case p.age > 60:
-			p.status = "elderly"
+	case p.age < 18:
+		p.status = "child"
+	case p.age >= 18 && p.age < 60:
+		p.status = "adult"
+	case p.age > 60:
+		p.status = "elderly"
 	}
 	var err = p.SetAge(age)
 	if err != nil {
-	    return p, err
+		return p, err
 	}
 	return p, err
 }
@@ -58,6 +58,26 @@ func CalculateSum(collection []Person) int {
 	}
 
 	return result
+}
+
+func MaxAge(collection []Person) float64 {
+	max := 0
+	for _, x := range collection {
+		if x.GetAge() > max {
+			max = x.GetAge()
+		}
+	}
+	return max
+}
+
+func MinAge(collection []Person) float64 {
+	min := 150
+	for _, x := range collection {
+		if x.GetAge() < min {
+			min = x.GetAge()
+		}
+	}
+	return float64(min)
 }
 
 func CalculateAvgAge(collection []Person) float64 {
